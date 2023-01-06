@@ -53,10 +53,10 @@ function Search() {
     };
 
     const handleInputChange = (e) => {
-        if (e.target.value.length > 0 && e.target.value === ' ') {
-            return;
+        const searchInputValue = e.target.value;
+        if (!searchInputValue.startsWith(' ')) {
+            setSearchValue(searchInputValue);
         }
-        setSearchValue(e.target.value);
     };
 
     return (
@@ -92,7 +92,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>
